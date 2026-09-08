@@ -3,56 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MotiLayer creates focused Unity Editor tools for animation, UI building, and asset management.">
+  <meta name="description" content="Documentation and feature guide for MotiLayer's UI Animation & Workflow Toolkit for Unity.">
   <meta name="theme-color" content="#f4c542">
-  <title>MotiLayer — Smarter Unity Editor Workflows</title>
+  <title>UI Animation &amp; Workflow Toolkit — MotiLayer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="nav shell">
-    <a class="brand" href="#top" aria-label="MotiLayer home"><span class="brand-mark">M</span><span>MotiLayer</span></a>
-    <nav aria-label="Primary navigation">
-      <a href="#tools">Tools</a><a href="#about">About</a><a href="#contact">Contact</a>
-    </nav>
+  <a class="skip-link" href="#tools">Skip to tools</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="MotiLayer home"><span class="brand-mark">M</span><span>MotiLayer</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a><a href="#tools">Tools</a><a href="#documentation">PDF guides</a><a href="#support">Support</a>
+      </nav>
+    </div>
   </header>
 
   <main id="top">
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow">UNITY EDITOR TOOLS</p>
-        <h1>Make the workflow move.</h1>
-        <p class="lead">MotiLayer creates practical Unity Editor extensions for animation, interface building, and asset management—designed to reduce repetitive work and keep production flowing.</p>
-        <div class="actions"><a class="button primary" href="#tools">Explore the tools</a><a class="button secondary" href="mailto:jyq787899384@gmail.com">Get in touch</a></div>
-      </div>
-      <div class="hero-art" aria-label="Abstract editor workflow illustration">
-        <div class="speed-lines"><i></i><i></i><i></i></div><div class="motion-m">M</div>
-        <div class="panel animation-panel"><span class="panel-dots">● ● ●</span><div class="timeline"><b></b><b></b><b></b></div><div class="playhead"></div></div>
-        <div class="panel ui-panel"><div class="ui-wide"></div><div class="ui-small"></div><div class="ui-small yellow"></div></div>
-        <div class="panel asset-panel"><span class="folder"></span><span></span><span></span><span></span><span></span></div>
+    <section class="intro shell" id="overview">
+      <p class="eyebrow">UNITY EDITOR TOOLKIT · VERSION 1.0.0</p>
+      <h1>UI Animation &amp;<br>Workflow Toolkit</h1>
+      <p class="lede">A focused set of Unity Editor tools for animation curves, keyframes, UGUI authoring, PSD import, reusable assets, particles, and shader property animation.</p>
+      <div class="intro-actions"><a class="button primary" href="#tools">Browse all tools</a><a class="button" href="https://u3d.as/45mg">Unity Asset Store</a></div>
+      <dl class="facts" aria-label="Toolkit summary">
+        <div><dt>16</dt><dd>tools</dd></div><div><dt>16</dt><dd>English PDF guides</dd></div><div><dt>6000.0.26f1</dt><dd>package upload version</dd></div><div><dt>UGUI</dt><dd>UI authoring workflow</dd></div>
+      </dl>
+    </section>
+
+    <section class="section section-rule shell" aria-labelledby="what-heading">
+      <div class="section-heading"><p class="eyebrow">WHAT IS INCLUDED</p><h2 id="what-heading">One toolkit, four practical workflows.</h2></div>
+      <div class="workflow-grid">
+        <article><p class="index">01</p><h3>Animation editing</h3><p>Shape easing, offset keys, generate variation, link properties, repair paths, bake motion, and manage final states.</p></article>
+        <article><p class="index">02</p><h3>UI workflow</h3><p>Build common UGUI objects faster and expose selected shader properties as animation-ready fields.</p></article>
+        <article><p class="index">03</p><h3>PSD import</h3><p>Export supported PSD layers and reconstruct their hierarchy, layout, images, and text as a UGUI Prefab.</p></article>
+        <article><p class="index">04</p><h3>Assets &amp; particles</h3><p>Find, organize, preview, import, and reuse frequently needed project assets and particle Prefabs.</p></article>
       </div>
     </section>
 
-    <section class="strip"><div class="shell strip-inner"><span>Animation</span><i></i><span>UI Building</span><i></i><span>Asset Management</span></div></section>
-
-    <section class="section shell" id="tools">
-      <div class="section-head"><p class="eyebrow">FIRST RELEASE</p><h2>Small tools. Immediate impact.</h2></div>
-      <article class="product-card">
-        <div class="product-icon"><div class="curve"></div></div>
-        <div><p class="tag">FREE UNITY EDITOR EXTENSION</p><h3>Animation Curve Flow</h3><p>Apply and transform animation curves directly in Unity's Animation window. A focused tool for faster curve editing with a simple, production-friendly workflow.</p>
-          <ul><li>Quick curve application</li><li>Works inside the Animation workflow</li><li>Undo support</li><li>Editor-only and lightweight</li></ul>
+    <section class="section tools-section" id="tools" aria-labelledby="tools-heading">
+      <div class="shell">
+        <div class="section-heading tools-heading-row">
+          <div><p class="eyebrow">TOOL REFERENCE</p><h2 id="tools-heading">Browse every tool.</h2></div>
+          <p>Open a tool to read its purpose, menu path, basic workflow, and important limitations. Each entry links to the complete PDF guide included with the package.</p>
         </div>
-      </article>
+        <div class="tool-controls" aria-label="Tool filters">
+          <label class="search-field"><span>Search tools</span><input id="tool-search" type="search" placeholder="Try “keyframe”, “PSD”, or “Prefab”" autocomplete="off"></label>
+          <div class="category-filters" id="category-filters" aria-label="Filter by category"></div>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="tool-list" id="tool-list"></div>
+        <p class="empty-state" id="empty-state" hidden>No tools match this search.</p>
+      </div>
     </section>
 
-    <section class="section soft" id="about"><div class="shell about-grid">
-      <div><p class="eyebrow">ABOUT MOTILAYER</p><h2>Tools shaped around real production friction.</h2></div>
-      <div><p>MotiLayer focuses on clear interfaces, efficient operation, and reducing repetitive tasks across Unity production. Future releases will expand beyond animation into UI creation and asset organization.</p><p class="disclosure"><strong>AI-assisted development disclosure:</strong> Functional code is developed with the assistance of generative AI, then reviewed, tested, modified, and integrated for practical use in Unity workflows.</p></div>
-    </div></section>
+    <section class="section shell" id="documentation" aria-labelledby="docs-heading">
+      <div class="section-heading docs-heading-row">
+        <div><p class="eyebrow">PDF DOCUMENTATION</p><h2 id="docs-heading">Complete user guides.</h2></div>
+        <p>Each tool has an English PDF guide. Use the online reference for a quick start, then open the corresponding guide for its controls, workflow and limitations.</p>
+      </div>
+      <div class="docs-table" id="docs-list"></div>
+    </section>
 
-    <section class="section shell contact" id="contact"><p class="eyebrow">CONTACT</p><h2>Questions, feedback, or ideas?</h2><p>MotiLayer is at the beginning of its journey. Your feedback helps shape what comes next.</p><a class="email" href="mailto:jyq787899384@gmail.com">jyq787899384@gmail.com</a></section>
+    <section class="section requirements" aria-labelledby="requirements-heading">
+      <div class="shell requirements-grid">
+        <div><p class="eyebrow">BEFORE YOU START</p><h2 id="requirements-heading">Compatibility &amp; requirements.</h2></div>
+        <div class="requirements-copy">
+          <h3>Unity and render pipelines</h3><p>The package was uploaded using Unity 6000.0.26f1. This identifies the upload version, not a tested compatibility range. Most utilities edit project data rather than render it; particle previews and shader-property animation still depend on the assigned assets and shaders. Compatibility with every render pipeline or Unity version is not guaranteed.</p>
+          <h3>Animation-window integration</h3><p>Some animation tools use reflection to read internal Unity Editor state, including native keyframe selection. Unity updates can break this integration. Editor-only execution does not remove this compatibility or Asset Store review constraint.</p>
+          <h3>Shader-property animation</h3><p>MatKeyframer is one component for animating selected properties on UGUI Graphic materials, not a shader editor or material library. It creates material instances and runs in the player when used. Review batching and masking behavior with your own UI.</p>
+          <h3>PSD workflow</h3><p>PSD Importer requires a local Python 3.10+ installation with <code>psd-tools</code> and <code>Pillow</code>. Follow its PDF guide before first use.</p>
+          <h3>Safe editing</h3><p>Some actions rewrite Animation Clips or managed library folders. Start with duplicate assets, check the active clip and selection, and read the relevant guide before destructive operations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell support" id="support" aria-labelledby="support-heading">
+      <p class="eyebrow">SUPPORT</p><h2 id="support-heading">Questions or feedback?</h2>
+      <p>Include the tool name, Unity version, operating system, render pipeline, reproduction steps and any Console error. Use a minimal example; do not send confidential project files.</p>
+      <a class="email" href="mailto:jyq787899384@gmail.com">jyq787899384@gmail.com</a>
+      <p class="disclosure"><strong>AI-assisted development disclosure:</strong> Functional code, English localization, documentation, and marketing materials were created with generative-AI assistance, then reviewed, modified, and prepared by the publisher for practical Unity workflows.</p>
+    </section>
   </main>
 
-  <footer class="shell"><span>© <span id="year"></span> MotiLayer</span><a href="https://github.com/hermityin">GitHub</a></footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <footer><div class="shell footer-inner"><span>© <span id="year"></span> MotiLayer</span><span>UI Animation &amp; Workflow Toolkit 1.0.0</span><a href="https://github.com/hermityin/motilayer-tools">GitHub</a></div></footer>
+  <script src="tools-data.js"></script><script src="app.js"></script>
 </body>
 </html>
