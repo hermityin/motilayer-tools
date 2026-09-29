@@ -29,7 +29,7 @@ Product: https://assetstore.unity.com/packages/slug/411992</p>
 <li>Place the source beneath an object with an Animator, then create a writable AnimationClip for that root.</li>
 <li>Animate the source or any of its children in Unity's Animation window.</li>
 <li>Assign Source Object, Animation Clip and Animation Root in Motion Repeater. Animation Root is the Transform whose local paths the clip uses; it is usually the object with the Animator.</li>
-<li>Set Start Time and End Time in seconds. All supported source and child curves within that interval are repeated. A zero-length interval repeats a single pose.</li>
+<li>Set Start Time and End Time in seconds. Existing keyframes on supported source and child curves within that interval are repeated. Choose bounds that include the required keys; the tool does not create new keys at interval boundaries. A zero-length interval repeats keys at that exact time.</li>
 <li>Set Stagger Frames and Playback Order. Start Preview and use the playback controls to inspect the result.</li>
 <li>Set Bake At in seconds and bake. Repeated curves are written into the assigned clip, starting at that time.</li>
 </ol>
