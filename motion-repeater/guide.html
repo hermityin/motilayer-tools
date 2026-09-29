@@ -1,0 +1,124 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Motion Repeater — User Guide</title><style>body{margin:0;background:#0e1320;color:#dce3ef;font:17px/1.75 system-ui,sans-serif}main{max-width:980px;margin:60px auto;padding:0 28px 80px}h1{font-size:64px;color:#fff;letter-spacing:-3px;margin-bottom:0}h2{color:#c7b5ff;margin-top:56px;border-top:1px solid #2b3345;padding-top:28px}a{color:#c7b5ff}table{border-collapse:collapse;font-size:15px}td,th{border:1px solid #354056;padding:12px;text-align:left}strong{color:#fff}li{margin:10px 0}pre{font:inherit}::selection{background:#5c4299}</style><main><h1 id="motion-repeater">Motion Repeater</h1>
+<h2 id="ui-array-animation-toolkit-version-10">UI Array &amp; Animation Toolkit · Version 1.0</h2>
+<p><strong>Animate once. Repeat with intent.</strong></p>
+<p>Motion Repeater is an editor authoring tool for Unity UI motion design. Duplicate a source hierarchy into eight layouts, preview staggered motion, and bake repeated curves into a native AnimationClip. Generated arrays retain lightweight runtime controllers for parameters that remain animatable.</p>
+<p>Publisher: MotiLayer Tools<br />
+Support: jyq787899384@gmail.com<br />
+Website: https://hermityin.github.io/motilayer-tools/<br />
+Product: https://assetstore.unity.com/packages/slug/411992</p>
+<h2 id="1-installation-and-requirements">1. Installation and requirements</h2>
+<p>Import the package into Unity 6000.0.26f1 or a compatible Unity 6 project. The release was developed and validated on Windows with Unity 6000.0.26f1 and the Built-in Render Pipeline. Other editor versions, operating systems and render pipelines are not certified by this release.</p>
+<p>Unity UI (com.unity.ugui, version 2.0.0 in the release project) is required. Install it from Unity's Package Manager if it is absent. The optional 2D Sprite package provides the Sprite Editor for creating sprite-sheet slices. Neither package is bundled or installed automatically. No paid third-party tool is required.</p>
+<p>All supplied assets live under Assets/MotiLayer/MotionRepeater. Keep the Scripts folder outside an Editor folder: it contains runtime controllers as well as editor-only sections. The namespace is MotiLayer.MotionRepeater. The Examples subfolder contains the demonstration player, sprites, nine clips and one showcase scene.</p>
+<p>Open <strong>Tools &gt; MotiLayer &gt; Motion Repeater</strong>. Open this guide with <strong>Tools &gt; MotiLayer &gt; Motion Repeater Manual</strong>.</p>
+<h2 id="2-explore-the-nine-examples">2. Explore the nine examples</h2>
+<p>Open Examples/Scenes/MotionRepeaterShowcase.unity and enter Play mode. Choose any study from the left panel, or use Previous and Next. Pause freezes the animation; Restart returns it to the beginning. Playback loops with a short hold on the final pose.</p>
+<p>The scene contains all nine original animation studies: Scale Echo, Grid Pulse, Nested Squares, Triangle Field, Color Wave, Type in Motion, Nested Ribbon, Year Cascade and Nested Type Field. These are creative examples of repeated and nested UI motion, not a one-to-one catalogue of the eight layout types. The original curves and generated hierarchies remain editable. The presentation hides offstage source objects while retaining them for inspection.</p>
+<p>Eight native Unity Presets in Presets provide a starting configuration for each layout. The example player uses Unity's Playables API only; it is optional and can be omitted from a production build.</p>
+<h2 id="3-build-a-static-array">3. Build a static array</h2>
+<ol>
+<li>Create a Canvas and a UI Image. Give the Image a unique, descriptive name.</li>
+<li>Assign the Image or its parent hierarchy to Source Object in Motion Repeater.</li>
+<li>Leave Animation Clip empty. Choose a layout and configure its count and dimensions.</li>
+<li>Start Preview. Adjust layout, clone overrides, index offsets and color/sprite settings.</li>
+<li>Choose Generate Array (No Animation). This keeps the generated hierarchy without writing animation curves.</li>
+</ol>
+<p>Preview objects are temporary. Clear Preview removes them. Generate or Bake makes the result persistent. Keep the generated Item / Spacing / Offset hierarchy intact: it separates layout placement, index transforms and source animation so they can coexist.</p>
+<h2 id="4-repeat-and-bake-an-animation">4. Repeat and bake an animation</h2>
+<ol>
+<li>Place the source beneath an object with an Animator, then create a writable AnimationClip for that root.</li>
+<li>Animate the source or any of its children in Unity's Animation window.</li>
+<li>Assign Source Object, Animation Clip and Animation Root in Motion Repeater. Animation Root is the Transform whose local paths the clip uses; it is usually the object with the Animator.</li>
+<li>Set Start Time and End Time in seconds. All supported source and child curves within that interval are repeated. A zero-length interval repeats a single pose.</li>
+<li>Set Stagger Frames and Playback Order. Start Preview and use the playback controls to inspect the result.</li>
+<li>Set Bake At in seconds and bake. Repeated curves are written into the assigned clip, starting at that time.</li>
+</ol>
+<p>Use Animation Window copies its current clip and playhead time, resets the source interval to the full clip, and proposes the nearest Animator/Animation ancestor as the root. Verify this root when working with nested Animators. The tool uses public Unity APIs; selecting keys in Unity's Animation window does not select the source interval. Set the interval explicitly in Motion Repeater.</p>
+<p>Bake writes to the assigned clip, so duplicate important clips before making experimental variations. Unrelated curves are retained. Successive bakes use unique group names and separate paths. Each bake and its generated hierarchy are grouped into one Undo operation.</p>
+<p>Time Scale is a duration multiplier: 2 makes the source animation last twice as long; 0.5 makes it last half as long. Stagger Frames uses the assigned clip's frame rate. Playback Order controls timing ranks; Index Order independently controls how per-element transform and color changes are distributed.</p>
+<h2 id="5-layout-reference">5. Layout reference</h2>
+<table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Main controls</th>
+<th>Timing and index options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grid</td>
+<td>Rows, columns, X/Y spacing</td>
+<td>Sequential, random, from center, by row, by column</td>
+</tr>
+<tr>
+<td>Ring</td>
+<td>Count, radius, start angle, spread, orientation</td>
+<td>Around the ring, random, paired expansion/convergence</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>Count, control points, linear/Bezier interpolation, spread, path alignment</td>
+<td>Along path, random, from center</td>
+</tr>
+<tr>
+<td>Spiral</td>
+<td>Count, turns, inner/outer radius, winding, spread, orientation</td>
+<td>Along spiral, random</td>
+</tr>
+<tr>
+<td>Radial</td>
+<td>Ray count, elements per ray, inner radius, radial spacing</td>
+<td>By ray, inner to outer, sweep around center, random</td>
+</tr>
+<tr>
+<td>Hexagonal</td>
+<td>Outer rings, center-to-center spacing</td>
+<td>Ring by ring, by row, random, along hexagon</td>
+</tr>
+<tr>
+<td>Scatter</td>
+<td>Count, random seed, rectangular width/height, reference point</td>
+<td>Random, distance from point</td>
+</tr>
+<tr>
+<td>Sprite Shape</td>
+<td>Shape sprite, alpha threshold, sample rows/columns, width/height, spread</td>
+<td>By row, by column, from center, random</td>
+</tr>
+</tbody>
+</table>
+<p>Layout-specific options appear automatically in the ordering panels. Reverse flips an order. A fixed random seed makes a random layout/order repeatable. Scatter does not enforce a minimum separation: overlapping elements are possible.</p>
+<p>Spread is a normalized coverage control. Ring, path and spiral use 0-100% in the authoring panel. At 0%, elements overlap at the starting point; at 100%, they cover the full layout. Sprite Shape collapses to its center at 0%. Generated components may display the corresponding normalized 0-1 value where indicated. Grid, radial and hexagonal spacing are distances in local UI units.</p>
+<p>Hexagonal arrays use concentric six-sided rings: one center element plus 6n elements in ring n. Total count is 1 + 3r(r+1), where r is the number of outer rings. Counts are 1, 7, 19 and 37 for zero through three rings.</p>
+<h2 id="6-path-editing-and-bezier-handles">6. Path editing and Bezier handles</h2>
+<p>Define the number of control points during setup. Insert points between existing points before generation. The generated ControlPoints hierarchy holds MotionRepeaterLinePoint components; animate their positions in the Animation window.</p>
+<p>Choose Linear for straight segments or Bezier for a smooth curve. Advanced: Bezier Handles is collapsed by default. Automatic smoothing provides a quick starting path. Enable Manual Handles for explicit angle and length controls. Linked handles share angle and length on both sides by default; enable Independent Handles when a corner or asymmetric curve is needed.</p>
+<p>Select a path array or control point to edit it in the Scene view: blue handles move positions; orange handles edit Bezier tangents. Record Control Point Keyframes writes the current values at the Animation window playhead. Open the correct clip on the array's Animator before recording. Keep point count fixed after generation; regenerate the array to change its topology.</p>
+<h2 id="7-sprite-shape-sampling">7. Sprite Shape sampling</h2>
+<p>Assign a sprite whose opaque pixels define the desired silhouette. Sampling checks alpha at the center of each grid cell. Increase sample rows/columns for more detail, or lower Alpha Threshold if no valid cells remain. Match Sprite Aspect Ratio calculates the height from the source image.</p>
+<p>The sampled point set is fixed when generated. Width, height and spread can be animated later. Changing the sprite, alpha threshold or sampling density requires regeneration. Sprite alpha sampling is an editor operation; generated runtime arrays do not repeatedly read the source texture.</p>
+<h2 id="8-clone-index-color-and-sprite-controls">8. Clone, index, color and sprite controls</h2>
+<p>Clone Overrides adjusts width, height, scale and Z rotation without editing the source. Index offsets distribute position, rotation and scale changes according to Index Order. Step applies a per-rank change; Total distributes a total change across the sequence. These controls can be combined with source animation because they act on separate hierarchy levels.</p>
+<p>Color settings distribute a gradient over elements. Sprite settings distribute the slices of a Multiple-mode sprite sheet. Slice the texture in Unity's Sprite Editor first. A baked Color Controller can record gradient values as native Image.color keyframes, reconstruct a gradient from the current frame, or clear its color animation. Unity gradients support a maximum of eight color keys; denser samples are reduced to eight evenly spaced keys.</p>
+<p>Color and sprite operations target Unity UI Image components. They are not a general material, SpriteRenderer or UI Toolkit styling system.</p>
+<h2 id="9-nesting-undo-and-presets">9. Nesting, Undo and Presets</h2>
+<p>An existing generated array can be the source for another array. Use one shared animation root above the source and destination. Relative paths preserve child animations, control-point curves and sprite-reference keys. Give siblings unique names and avoid '/' in object names, because Unity animation bindings use slash-delimited paths.</p>
+<p>Undo/Redo covers authoring-panel settings, generated objects, supported component edits and clip-writing operations. Native Presets store reusable layout and effect settings. Presets deliberately exclude scene object references, clip/root/time selection and temporary preview/playback state.</p>
+<p>Do not rename or reparent animated objects after baking without updating their bindings. Do not change baked element counts or delete required Item, Spacing, Offset or ControlPoints objects by hand. Regenerate instead. Array groups keep frozen timing/index mappings so component animation does not reorder elements unexpectedly.</p>
+<h2 id="10-performance-and-limitations">10. Performance and limitations</h2>
+<p>Static controllers compare relevant state and skip unchanged layout calculations and Transform writes. Cached hierarchy references reduce repeated traversal. Animated parameters and control points invalidate the relevant state and update normally. Deep nesting still multiplies object and curve counts; use modest source hierarchies and test on the target device. This package is an authoring convenience, not GPU instancing or a particle system.</p>
+<p>Supported data includes native float curves and object-reference curves within the source hierarchy. Animation events, Animator state machines, transitions, constraints, rigging and external effects are not duplicated as a retimed workflow. Root motion and humanoid retargeting are outside the intended UI use case. Bake into a writable .anim asset rather than an imported read-only model clip.</p>
+<p>The tool is designed for RectTransform-based uGUI. The included example scene uses the Built-in Render Pipeline and Unity's legacy input module for its buttons. In projects configured for the new Input System only, replace StandaloneInputModule with InputSystemUIInputModule or enable both input backends. No Input System dependency is imposed by this package.</p>
+<h2 id="11-troubleshooting">11. Troubleshooting</h2>
+<p><strong>Only a static layout appears:</strong> assign a clip and its correct animation root, then check the source interval and source path. The interval must include keys belonging to the source or its descendants.</p>
+<p><strong>The bake button produces no animation:</strong> verify that the destination group and source are under the same animation root, the clip is writable, and names are unique. Read the status message in the tool.</p>
+<p><strong>Sprite Shape is empty:</strong> lower the alpha threshold, increase sample density, and verify that the sprite contains nontransparent pixels.</p>
+<p><strong>Sprite slices are missing:</strong> set Sprite Mode to Multiple and define slices. Assign the texture in Sprite settings.</p>
+<p><strong>Scene handles are missing:</strong> select a generated path array or control point. Enable Manual Handles to adjust Bezier tangents.</p>
+<p><strong>Demo buttons do not respond:</strong> enter Play mode, confirm an EventSystem is present, and use a compatible input module.</p>
+<p><strong>An animation stops working after reparenting:</strong> Unity bindings are relative paths. Restore the old hierarchy with Undo or rebuild the binding paths.</p>
+<h2 id="12-support-and-licensing">12. Support and licensing</h2>
+<p>For support, email jyq787899384@gmail.com with your Unity version, render pipeline, a brief reproduction procedure and the relevant Console messages. Do not send credentials or private project data.</p>
+<p>This product is distributed under the Unity Asset Store End User License Agreement applicable to your purchase. Editor-extension licensing is per seat. See https://unity.com/legal/as-terms for the current terms. This guide does not replace that agreement.</p>
+<p>See Third-Party Notices.md and CHANGELOG.md for attribution, dependencies and version history. The package contains no telemetry, account login, remote service dependency or license activation code.</p></main></html>
